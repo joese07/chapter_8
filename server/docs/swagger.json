@@ -1,0 +1,395 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Challenge Chapter 8 Binar Academy, Documentation RESTAPI",
+    "title": "Chapter 8",
+    "version": "1.0.0"
+  },
+  "basePath": "/api/v1/player",
+  "tags": [
+    {
+      "name": "player",
+      "description": "player Resource"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "player"
+        ],
+        "summary": "List All Players",
+        "description": "Description for lis players",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "Lorem Ipsum"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "lorem@gmail.com"
+                  },
+                  "experience": {
+                    "type": "string",
+                    "example": "6000"
+                  },
+                  "lvl": {
+                    "type": "string",
+                    "example": "600"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "summary": "Add new Player",
+        "description": "Create new Player",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Player Object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "admin@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "admin123"
+                },
+                "experience": {
+                  "type": "string",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "1"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "admin@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "admin123"
+                },
+                "experience": {
+                  "type": "string",
+                  "example": "500"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "username or email cannot empty"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{playerId}": {
+      "get": {
+        "tags": [
+          "player"
+        ],
+        "summary": "Find Player By ID",
+        "description": "Returns a single Player",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "playerId",
+            "description": "ID of player to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "1"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "admin@gmail.com"
+                },
+                "experience": {
+                  "type": "string",
+                  "example": "60000"
+                },
+                "lvl": {
+                  "type": "string",
+                  "example": "600"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Player not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Player with {id} not Found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "player"
+        ],
+        "summary": "Update player",
+        "description": "update data player",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "playerId",
+            "description": "Player update",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "update user object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "admin@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "admin123"
+                },
+                "experience": {
+                  "type": "string",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success Update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "PLayer with id: {id} successfully update"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Player Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "PLayer with id: {id} not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Failed to update"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "player"
+        ],
+        "summary": "Delete Player",
+        "description": "Delete user permanent with id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "playerId",
+            "in": "path",
+            "description": "the user taht needs to be deleted",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "PLayer with id: {id} deleted successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Cannot delete Player with id: {id}, maybe player was not found !"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exp/{playerId}": {
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "summary": "update Experience player",
+        "description": "this can only be done the logged in user",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "update experience",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "experience": {
+                  "type": "string",
+                  "example": "50000"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "PLayer with id = {id} gain {exp} experience, total experience = {player.experience}"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Cannot update player with id={id}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
